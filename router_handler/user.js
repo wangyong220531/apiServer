@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client")
 const prisma = new PrismaClient()
+const bcryptjs = require("bcryptjs")
 
 const register = (req, res) => {
     const userInfo = req.body
@@ -11,18 +12,7 @@ const register = (req, res) => {
         })
     }
     async function test() {
-        const res = await prisma.users.update({
-            where:{
-                username: "AK103"
-            },
-            data: {
-                username: userInfo.username,
-                password: userInfo.password,
-                nickname: userInfo.nickname,
-                email: userInfo.email,
-                avator: userInfo.avator
-            }
-        })
+        const res = await prisma.users.findMany()
         console.dir(res, { depth: null })
     }
     test()
