@@ -5,6 +5,16 @@ const cors = require("cors")
 app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 
+app.use((req,res,next) => {
+    res.cc = (err, status) => {
+        res.send({
+            status,
+            msg: err instanceof Error ? err.message : err
+        })
+    }
+    next()
+})
+
 const userRouter = require("./router/user")
 app.use("/api", userRouter)
 
