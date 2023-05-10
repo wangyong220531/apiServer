@@ -1,12 +1,12 @@
 const express = require("express")
 const app = express()
-
 const cors = require("cors")
 app.use(cors())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+const joi = require("joi")
 
-app.use((req,res,next) => {
-    res.cc = (err, status) => {
+app.use((req, res, next) => {
+    res.cc = (err, status = 1) => {
         res.send({
             status,
             msg: err instanceof Error ? err.message : err
@@ -17,6 +17,10 @@ app.use((req,res,next) => {
 
 const userRouter = require("./router/user")
 app.use("/api", userRouter)
+
+app.use((err, req, res, next) => {
+    err instanceof joi.ValidationError ? res.cc(err) : res.cc(err)
+})
 
 app.listen(1010, () => {
     console.log("Express服务正在运行在http://127.0.0.1:1010上")

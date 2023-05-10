@@ -59,3 +59,15 @@ touch script.ts
 ```shell
 npm i @prisma/client 
 ```
+
+## 安装@hapi/joi包，为表单中携带的每一项数据，定义验证规则
+
+```shell
+npm i @hapi/joi@17.0.1
+```
+
+## 安装@escook/express-joi包，实现自动对表单数据进行验证
+
+```shell
+npm i @escook/express-joi
+```
