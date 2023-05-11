@@ -2,10 +2,10 @@ const express = require("express")
 const router = express.Router()
 const userHandler = require("../router_handler/user")
 const expressJoi = require("@escook/express-joi")
-const { reg_login_schema } = require("../schema/user")
+const { loginReg } = require("../schema/user")
 
-router.post("/register", userHandler.register)
+router.post("/register", expressJoi(loginReg), userHandler.register)
 
-router.post("/login", expressJoi(reg_login_schema), userHandler.login)
+router.post("/login", expressJoi(loginReg), userHandler.login)
 
 module.exports = router

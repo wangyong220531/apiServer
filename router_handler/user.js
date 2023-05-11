@@ -7,7 +7,7 @@ const config = require("../config")
 
 const register = (req, res) => {
     const userInfo = req.body
-    query = async () => {
+    const query = async () => {
         const res = await prisma.users.create({
             data: {
                 username: userInfo.username,
@@ -24,7 +24,7 @@ const register = (req, res) => {
 
 const login = (req, res) => {
     const userInfo = req.body
-    query = async () => {
+    const query = async () => {
         const result = await prisma.users.findMany({
             where: {
                 username: userInfo.username

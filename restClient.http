@@ -1,6 +1,9 @@
 # POST http://127.0.0.1:1010/api/register HTTP/1.1
 # content-type: application/json
 
+# POST http://127.0.0.1:1010/api/register HTTP/1.1
+# content-type: application/json
+
 # {
 #     "username": "wanhao111",
 #     "password":"123456",
@@ -9,10 +12,19 @@
 #     "avator":"wanhaoavator"
 # }
 
-POST http://127.0.0.1:1010/api/login HTTP/1.1
-content-type: application/json
+# POST http://127.0.0.1:1010/api/login HTTP/1.1
+# content-type: application/json
 
-{
-    "username": "wanhao111",
-    "password":"123456"
-}
+# {
+#     "username": "wanhao111",
+#     "password":"123456"
+# }
+
+GET http://127.0.0.1:1010/getUser HTTP/1.1
+# content-type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJ3YW5oYW8xMTEiLCJwYXNzd29yZCI6IiIsIm5pY2tuYW1lIjoibGlsd2FuaGFvIiwiZW1haWwiOiJ3YW5oYW9AZ21haWwuY29tIiwiYXZhdG9yIjoid2FuaGFvYXZhdG9yIiwiaWF0IjoxNjgzNzY5MTAzLCJleHAiOjE2ODM3NzI3MDN9.ifFKDfjYASIDUXRBclZCckxtqBcZN2EAEIv2T-NOHGU"
+
+# {
+#     "username": "wanhao111",
+#     "password":"123456"
+# }

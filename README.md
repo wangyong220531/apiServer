@@ -60,23 +60,26 @@ touch script.ts
 npm i @prisma/client 
 ```
 
-<<<<<<< HEAD
 ## 十一、安装bcryptjs@2.4.3
 
 ```shell
 npm i bcryptjs@2.4.3
 ```
 
-=======
-## 安装@hapi/joi包，为表单中携带的每一项数据，定义验证规则
+## 十二、安装@hapi/joi包，为表单中携带的每一项数据，定义验证规则
 
 ```shell
 npm i @hapi/joi@17.0.1
 ```
 
-## 安装@escook/express-joi包，实现自动对表单数据进行验证
+## 十三、安装@escook/express-joi包，实现自动对表单数据进行验证
 
 ```shell
 npm i @escook/express-joi
 ```
->>>>>>> 93a5b5c4890376d5293aaa897728788eee094c6d
+
+## 十四、安装express-jwt
+
+```shell
+npm i express-jwt@5.3.3
+```
