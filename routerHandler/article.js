@@ -77,7 +77,7 @@ const delArticle = (req, res) => {
     const update = async () => {
         const result = await prisma.article.update({
             where: {
-                id: req.params
+                id: Number(req.params.id)
             },
             data: {
                 is_delete: true
@@ -96,21 +96,52 @@ const delArticle = (req, res) => {
               })
     }
     const judge = async () => {
-        const result = await prisma.article.updateUnique({
+        const result = await prisma.article.findUnique({
             where: {
-                id: req.params
+                id: Number(req.params.id)
             }
         })
-        console.log(result);
-        // result
-        //     ? update()
-        //     : res.send({
-        //           status: 1,
-        //           success: false,
-        //           msg: "未查询到此文章！"
-        //       })
+        result
+            ? update()
+            : res.send({
+                  status: 1,
+                  success: false,
+                  msg: "未查询到此文章！"
+              })
     }
     judge()
+        .then(async () => {
+            await prisma.$disconnect()
+        })
+        .catch(async e => {
+            await prisma.$disconnect()
+            process.exit(1)
+        })
+}
+
+const getSpeciArc = (req, res) => {
+    const query = async () => {
+        const result = await prisma.article.findUnique({
+            where: {
+                id: Number(req.params.id)
+            }
+        })
+        result
+            ? (delete result.id,
+              delete result.is_delete,
+              res.send({
+                  status: 0,
+                  success: true,
+                  msg: "获取成功！",
+                  data: result
+              }))
+            : res.send({
+                  status: 0,
+                  success: true,
+                  msg: "获取失败！"
+              })
+    }
+    query()
         .then(async () => {
             await prisma.$disconnect()
         })
@@ -123,5 +154,6 @@ const delArticle = (req, res) => {
 module.exports = {
     getArticleList,
     addArticle,
-    delArticle
+    delArticle,
+    getSpeciArc
 }
