@@ -7,7 +7,7 @@ const password = joi
     .pattern(/^[\S]{6,12}$/)
     .required()
 const email = joi.string().email().required()
-const avator = joi.string()
+const avator = joi.string().dataUri().required()
 
 exports.loginReg = {
     body: {
@@ -33,5 +33,12 @@ exports.updatePwd = {
         id,
         oldPwd: password,
         newPwd: joi.not(joi.ref("oldPwd")).concat(password)
+    }
+}
+
+exports.updateAvator = {
+    body: {
+        id,
+        avator
     }
 }

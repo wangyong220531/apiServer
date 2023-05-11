@@ -12,10 +12,16 @@ datasource db {
 
 model Users {
     id       Int    @id @default(autoincrement())
-    username String @unique
+    username String 
     password String
     nickname String
     email    String
     avator   String
 }
 
+model Article {
+    id Int @id @default(autoincrement())
+    name String @unique
+    alias String 
+    is_delete Boolean @default(false)
+}

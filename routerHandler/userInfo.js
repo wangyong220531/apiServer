@@ -144,8 +144,56 @@ const updatePwd = (req, res) => {
         })
 }
 
+const updateAvator = (req, res) => {
+    const user = req.body
+    const update = async () => {
+        const result = await prisma.users.updateUnique({
+            where: {
+                id: user.id
+            },
+            data: {
+                avator: user.avator
+            }
+        })
+        result
+            ? res.send({
+                  status: 0,
+                  success: true,
+                  msg: "更新头像成功！"
+              })
+            : res.send({
+                  status: 0,
+                  success: true,
+                  msg: "更新头像失败！"
+              })
+    }
+    const query = async () => {
+        const result = await prisma.users.findUnique({
+            where: {
+                id: user.id
+            }
+        })
+        result
+            ? update()
+            : res.send({
+                  status: 1,
+                  success: false,
+                  msg: "查询不到该用户！"
+              })
+    }
+    query()
+        .then(async () => {
+            await prisma.$disconnect()
+        })
+        .catch(async e => {
+            await prisma.$disconnect()
+            process.exit(1)
+        })
+}
+
 module.exports = {
     getUserInfo,
     updateUserInfo,
-    updatePwd
+    updatePwd,
+    updateAvator
 }

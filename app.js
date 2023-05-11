@@ -21,11 +21,15 @@ app.use(expressJWT({ secret: config.secretKey }).unless({ path: [/^\/api/] }))
 
 const userRouter = require("./router/user")
 app.use("/api", userRouter)
+
 const userInfo = require("./router/userInfo")
 app.use("/my", userInfo)
 
+const userArticle = require("./router/article")
+app.use("/my", userArticle)
+
 app.use((err, req, res, next) => {
-    console.log(err);
+    console.log(err)
     if (err.name === "UnauthorizedError") return res.cc("身份认证失败！")
     err instanceof joi.ValidationError ? res.cc(err) : res.cc(err)
 })
