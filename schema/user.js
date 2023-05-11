@@ -21,6 +21,17 @@ exports.loginReg = {
 
 exports.updateUserInfoReg = {
     body: {
-        id
+        id,
+        username,
+        email,
+        avator
+    }
+}
+
+exports.updatePwd = {
+    body: {
+        id,
+        oldPwd: password,
+        newPwd: joi.not(joi.ref("oldPwd")).concat(password)
     }
 }
