@@ -28,6 +28,9 @@ app.use("/my", userInfo)
 const userArticle = require("./router/article")
 app.use("/my", userArticle)
 
+const userGrade = require("./router/grade")
+app.use("/my", userGrade)
+
 app.use((err, req, res, next) => {
     console.log(err)
     if (err.name === "UnauthorizedError") return res.cc("身份认证失败！")

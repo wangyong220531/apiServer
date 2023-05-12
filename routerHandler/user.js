@@ -3,6 +3,7 @@ const prisma = new PrismaClient()
 const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const config = require("../config")
+const { log } = require("console")
 
 const register = (req, res) => {
     const userInfo = req.body
@@ -12,8 +13,7 @@ const register = (req, res) => {
                 username: userInfo.username,
                 password: bcryptjs.hashSync(userInfo.password),
                 nickname: userInfo.nickname,
-                email: userInfo.email,
-                avator: userInfo.avator
+                email: userInfo.email
             }
         })
         result
@@ -34,6 +34,7 @@ const register = (req, res) => {
             await prisma.$disconnect()
         })
         .catch(async e => {
+            log(e)
             await prisma.$disconnect()
             process.exit(1)
         })
@@ -77,6 +78,7 @@ const login = (req, res) => {
             await prisma.$disconnect()
         })
         .catch(async e => {
+            console.log(e);
             await prisma.$disconnect()
             process.exit(1)
         })

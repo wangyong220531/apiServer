@@ -7,16 +7,13 @@ const password = joi
     .pattern(/^[\S]{6,12}$/)
     .required()
 const email = joi.string().email().required()
-const avator = joi.string().required()
 
 exports.registerReg = {
     body: {
-        id,
         username,
         password,
         nickname: username,
-        email,
-        avator
+        email
     }
 }
 
@@ -33,8 +30,7 @@ exports.updateUserInfoReg = {
     body: {
         id,
         username,
-        email,
-        avator
+        email
     }
 }
 
@@ -46,9 +42,9 @@ exports.updatePwd = {
     }
 }
 
-exports.updateAvator = {
-    body: {
-        id,
-        avator
-    }
-}
+// exports.updateAvator = {
+//     body: {
+//         id,
+//         avator
+//     }
+// }
