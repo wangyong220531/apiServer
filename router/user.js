@@ -6,6 +6,24 @@ const { loginReg } = require("../schema/user")
 
 router.post("/register", expressJoi(loginReg), userHandler.register)
 
+/**,
+ * @swagger
+ * /api//register:
+ *    post:
+ *      tags:
+ *      - 用户
+ *      summary: 账号注册
+ *      produces:
+ *      - application/json
+ *      responses:
+ *        200:
+ *          description: 注册成功！
+ *        400:
+ *          description: 无效的参数！
+ *        404:
+ *          description: 查询不到！
+ * */
+
 router.post("/login", expressJoi(loginReg), userHandler.login)
 
 module.exports = router

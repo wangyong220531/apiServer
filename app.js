@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 
 const expressJWT = require("express-jwt")
 const config = require("./config")
-app.use(expressJWT({ secret: config.secretKey }).unless({ path: [/^\/api/] }))
+app.use(expressJWT({ secret: config.secretKey }).unless({ path: [/^\/api|\/swagger/] }))
 
 const userRouter = require("./router/user")
 app.use("/api", userRouter)
@@ -33,6 +33,9 @@ app.use((err, req, res, next) => {
     if (err.name === "UnauthorizedError") return res.cc("身份认证失败！")
     err instanceof joi.ValidationError ? res.cc(err) : res.cc(err)
 })
+
+const swaggerInstall = require("./utils/swaggers")
+swaggerInstall(app)
 
 app.listen(1010, () => {
     console.log("Express服务正在运行在http://127.0.0.1:1010上")

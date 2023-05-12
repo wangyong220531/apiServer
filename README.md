@@ -83,3 +83,9 @@ npm i @escook/express-joi
 ```shell
 npm i express-jwt@5.3.3
 ```
+
+## 十五、安装Swagger需要的相关依赖包
+
+```shell
+npm install swagger-ui-express swagger-jsdoc -S
+```

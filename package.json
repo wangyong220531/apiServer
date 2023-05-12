@@ -18,7 +18,9 @@
     "express": "^4.17.1",
     "express-jwt": "^5.3.3",
     "joi": "^17.9.2",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.3"
   },
   "devDependencies": {
     "@types/node": "^20.1.1",
