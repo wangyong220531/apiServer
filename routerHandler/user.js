@@ -3,22 +3,41 @@ const prisma = new PrismaClient()
 const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const config = require("../config")
+const { log } = require("console")
 
 const register = (req, res) => {
     const userInfo = req.body
     const query = async () => {
-        const res = await prisma.users.create({
+        const result = await prisma.users.create({
             data: {
                 username: userInfo.username,
                 password: bcryptjs.hashSync(userInfo.password),
                 nickname: userInfo.nickname,
-                email: userInfo.email,
-                avator: userInfo.avator
+                email: userInfo.email
             }
         })
-        console.dir(res, { depth: null })
+        result
+            ? res.send({
+                  status: 0,
+                  success: true,
+                  msg: "注册成功！",
+                  data: result
+              })
+            : res.send({
+                  status: 1,
+                  success: false,
+                  msg: "注册失败！"
+              })
     }
     query()
+        .then(async () => {
+            await prisma.$disconnect()
+        })
+        .catch(async e => {
+            log(e)
+            await prisma.$disconnect()
+            process.exit(1)
+        })
 }
 
 const login = (req, res) => {
@@ -55,6 +74,14 @@ const login = (req, res) => {
         })
     }
     query()
+        .then(async () => {
+            await prisma.$disconnect()
+        })
+        .catch(async e => {
+            console.log(e);
+            await prisma.$disconnect()
+            process.exit(1)
+        })
 }
 
 module.exports = {
