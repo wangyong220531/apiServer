@@ -32,16 +32,32 @@ const userGrade = require("./router/grade")
 app.use("/my", userGrade)
 
 app.get("/test", (req, res) => {
-    res.send({
-        code: 200,
-        msg:"获取成功！",
-        success: true,
-        data: {
+    const query = req.query
+    if (query.id === "2") {
+        const data = {
             name: "菜徐腾",
             age: "22",
             role: "刺客"
         }
-    })
+        res.send({
+            code: 200,
+            msg: "获取成功！",
+            success: true,
+            data
+        })
+    } else {
+        const data = {
+            name: "卜方浩",
+            age: "26",
+            role: "战士"
+        }
+        res.send({
+            code: 200,
+            msg: "获取成功！",
+            success: true,
+            data
+        })
+    }
 })
 
 app.use((err, req, res, next) => {
