@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 
 const expressJWT = require("express-jwt")
 const config = require("./config")
-app.use(expressJWT({ secret: config.secretKey }).unless({ path: [/^\/api|\/swagger/] }))
+app.use(expressJWT({ secret: config.secretKey }).unless({ path: [/^\/api|\/swagger|\/test/] }))
 
 const userRouter = require("./router/user")
 app.use("/api", userRouter)
@@ -30,6 +30,19 @@ app.use("/my", userArticle)
 
 const userGrade = require("./router/grade")
 app.use("/my", userGrade)
+
+app.get("/test", (req, res) => {
+    res.send({
+        code: 200,
+        msg:"获取成功！",
+        success: true,
+        data: {
+            name: "菜徐腾",
+            age: "22",
+            role: "刺客"
+        }
+    })
+})
 
 app.use((err, req, res, next) => {
     console.log(err)

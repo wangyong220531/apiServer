@@ -47,16 +47,16 @@ const getGradeList = (req, res) => {
     })
     // client.on("connect", () => {
     //     client.set("姓名", "蔡徐腾", redis.print)
-    //     client.get("姓名", redis.print)
-    //     client.hmset("编程语言", { TS: "TypeScript", GO: "Golang" }, redis.print)
-    //     client.hmset("编程语言", "SQL", "Structured Query Language", "C#", "C Sharp", redis.print)
-    //     client.hgetall("编程语言", (err, res) => {
-    //         if (err) {
-    //             console.log("Error：" + err)
-    //             return
-    //         }
-    //         dir(res)
-    //     })
+    //     // client.get("姓名", redis.print)
+    //     // client.hmset("编程语言", { TS: "TypeScript", GO: "Golang" }, redis.print)
+    //     // client.hmset("编程语言", "SQL", "Structured Query Language", "C#", "C Sharp", redis.print)
+    //     // client.hgetall("编程语言", (err, res) => {
+    //     //     if (err) {
+    //     //         console.log("Error：" + err)
+    //     //         return
+    //     //     }
+    //     //     dir(res)
+    //     // })
     // })
 
     client.on("connect", () => {
@@ -65,17 +65,29 @@ const getGradeList = (req, res) => {
         client.sadd(key, "Python")
         client.sadd(key, "C++")
 
-        client
-            .multi()
-            .sismember(key, "Rust")
-            .smembers(key)
-            .exec((err, replies) => {
-                console.log("Replies：" + replies.length)
-                replies.forEach((e, index) => {
-                    console.log("Reply" + index + "：" + e.toString())
-                })
-                client.quit()
-            })
+        // client
+        //     .multi()
+        //     .sismember(key, "Rust")
+        //     .smembers(key)
+        //     .exec((err, replies) => {
+        //         console.log("Replies：" + replies.length)
+        //         replies.forEach((e, index) => {
+        //             console.log("Reply" + index + "：" + e.toString())
+        //         })
+        //         client.quit()
+        //     })
+
+        // const num = 0
+        
+    })
+
+    client.get("skills", (err, data) => {
+        console.log(data);
+        // if (data !== null) {
+        //     num = data + 1
+        //     console.log("a:",num);
+        // }
+        // client.set("visitMember", num)
     })
 }
 
